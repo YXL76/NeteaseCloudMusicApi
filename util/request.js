@@ -1,7 +1,6 @@
 const encrypt = require('./crypto')
 const request = require('request')
 const queryString = require('querystring')
-const PacProxyAgent = require('pac-proxy-agent')
 const zlib = require('zlib')
 
 // request.debug = true // 开启可看到更详细信息
@@ -119,11 +118,7 @@ const createRequest = (method, url, data, options) => {
 
     if (options.crypto === 'eapi') settings.encoding = null
 
-    if (/\.pac$/i.test(options.proxy)) {
-      settings.agent = new PacProxyAgent(options.proxy)
-    } else {
-      settings.proxy = options.proxy
-    }
+    settings.proxy = options.proxy
 
     request(settings, (err, res, body) => {
       if (err) {
