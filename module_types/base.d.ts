@@ -5,7 +5,7 @@ export interface APIBaseResponse {
 }
 
 export interface RequestBaseConfig {
-  cookie?: string
+  cookie: Record<string, unknown>
   realIP?: string // IPv4/IPv6 filled in X-Real-IP
   proxy?: string // HTTP proxy
 }
