@@ -110,6 +110,7 @@ const createRequest = (method, url, data, options) => {
 
     const answer = { status: 500, body: {}, cookie: [] }
     const settings = {
+      forever: true,
       method: method,
       url: url,
       headers: headers,
