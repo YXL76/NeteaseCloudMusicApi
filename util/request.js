@@ -51,7 +51,7 @@ const createRequest = (method, url, data, options) => {
     if (options.realIP) headers['X-Real-IP'] = options.realIP
     headers['Cookie'] = Object.entries(options.cookie)
       .map(
-        (key, value) =>
+        ([key, value]) =>
           `${encodeURIComponent(key)}=${encodeURIComponent(value)}`,
       )
       .join('; ')
@@ -92,7 +92,7 @@ const createRequest = (method, url, data, options) => {
       if (cookie.MUSIC_A) header['MUSIC_A'] = cookie.MUSIC_A
       headers['Cookie'] = Object.entries(header)
         .map(
-          (key, value) =>
+          ([key, value]) =>
             `${encodeURIComponent(key)}=${encodeURIComponent(value)}`,
         )
         .join('; ')
