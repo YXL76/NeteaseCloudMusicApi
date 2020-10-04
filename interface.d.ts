@@ -1,5 +1,5 @@
 export interface RequestBaseConfig {
-  cookie?: string
+  cookie: Record<string, unknown>
   realIP?: string // IPv4/IPv6 filled in X-Real-IP
   proxy?: string // HTTP proxy
 }
@@ -148,62 +148,39 @@ export const enum ArtistType {
   band = '3',
 }
 
+export type ArtistInitial =
+  | 'A'
+  | 'B'
+  | 'C'
+  | 'D'
+  | 'E'
+  | 'F'
+  | 'G'
+  | 'H'
+  | 'I'
+  | 'J'
+  | 'K'
+  | 'L'
+  | 'M'
+  | 'N'
+  | 'O'
+  | 'P'
+  | 'Q'
+  | 'R'
+  | 'S'
+  | 'T'
+  | 'U'
+  | 'V'
+  | 'W'
+  | 'X'
+  | 'Y'
+  | 'Z'
+  | undefined
+
 export function artist_list(
   params: {
     area: ArtistArea
-    initial?:
-      | 'a'
-      | 'b'
-      | 'c'
-      | 'd'
-      | 'e'
-      | 'f'
-      | 'g'
-      | 'h'
-      | 'i'
-      | 'j'
-      | 'k'
-      | 'l'
-      | 'm'
-      | 'n'
-      | 'o'
-      | 'p'
-      | 'q'
-      | 'r'
-      | 's'
-      | 't'
-      | 'u'
-      | 'v'
-      | 'w'
-      | 'x'
-      | 'y'
-      | 'z'
-      | 'A'
-      | 'B'
-      | 'C'
-      | 'D'
-      | 'E'
-      | 'F'
-      | 'G'
-      | 'H'
-      | 'I'
-      | 'J'
-      | 'K'
-      | 'L'
-      | 'M'
-      | 'N'
-      | 'O'
-      | 'P'
-      | 'Q'
-      | 'R'
-      | 'S'
-      | 'T'
-      | 'U'
-      | 'V'
-      | 'W'
-      | 'X'
-      | 'Y'
-      | 'Z'
+    initial?: ArtistInitial
     type?: ArtistType
   } & MultiPageConfig &
     RequestBaseConfig,
@@ -1028,7 +1005,7 @@ export function simi_user(
 ): Promise<Response>
 
 export function song_detail(
-  params: { ids: string } & RequestBaseConfig,
+  params: { ids: number[] } & RequestBaseConfig,
 ): Promise<Response>
 
 export function song_order_update(

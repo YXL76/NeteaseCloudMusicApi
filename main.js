@@ -707,6 +707,11 @@ obj['countries_code_list'] = function (data) {
   return countries_code_list(data, request)
 }
 
+const comment_new = require('./module/comment_new')
+obj['comment_new'] = function (data) {
+  return comment_new(data, request)
+}
+
 const comment_video = require('./module/comment_video')
 obj['comment_video'] = function (data) {
   return comment_video(data, request)
