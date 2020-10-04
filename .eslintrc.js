@@ -5,7 +5,6 @@ module.exports = {
     ecmaVersion: 2018,
     sourceType: 'module',
   },
-  plugins: ['html'],
   extends: ['plugin:prettier/recommended'],
   env: {
     browser: true,

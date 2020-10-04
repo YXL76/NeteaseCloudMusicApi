@@ -43,35 +43,27 @@ const chooseUserAgent = (ua = false) => {
 }
 const createRequest = (method, url, data, options) => {
   return new Promise((resolve, reject) => {
-    let headers = { 'User-Agent': chooseUserAgent(options.ua) }
-    if (method.toUpperCase() === 'POST')
+    let headers = { 'User-Agent': chooseUserAgent(options.ua), Cookie: '' }
+    if (method === 'POST')
       headers['Content-Type'] = 'application/x-www-form-urlencoded'
     if (url.includes('music.163.com'))
       headers['Referer'] = 'https://music.163.com'
     if (options.realIP) headers['X-Real-IP'] = options.realIP
-    // headers['X-Real-IP'] = '118.88.88.88'
-    if (typeof options.cookie === 'object')
-      headers['Cookie'] = Object.keys(options.cookie)
-        .map(
-          (key) =>
-            encodeURIComponent(key) +
-            '=' +
-            encodeURIComponent(options.cookie[key]),
-        )
-        .join('; ')
-    else if (options.cookie) headers['Cookie'] = options.cookie
+    headers['Cookie'] = Object.entries(options.cookie)
+      .map(
+        (key, value) =>
+          `${encodeURIComponent(key)}=${encodeURIComponent(value)}`,
+      )
+      .join('; ')
 
-    if (!headers['Cookie']) {
-      headers['Cookie'] = options.token || ''
-    }
     if (options.crypto === 'weapi') {
-      let csrfToken = (headers['Cookie'] || '').match(/_csrf=([^(;|$)]+)/)
+      let csrfToken = headers['Cookie'].match(/_csrf=([^(;|$)]+)/)
       data.csrf_token = csrfToken ? csrfToken[1] : ''
       data = encrypt.weapi(data)
       url = url.replace(/\w*api/, 'weapi')
     } else if (options.crypto === 'linuxapi') {
       data = encrypt.linuxapi({
-        method: method,
+        method,
         url: url.replace(/\w*api/, 'api'),
         params: data,
       })
@@ -79,7 +71,7 @@ const createRequest = (method, url, data, options) => {
         'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.90 Safari/537.36'
       url = 'https://music.163.com/api/linux/forward'
     } else if (options.crypto === 'eapi') {
-      const cookie = options.cookie || {}
+      const cookie = options.cookie
       const csrfToken = cookie['__csrf'] || ''
       const header = {
         osver: cookie.osver, //系统版本
@@ -98,10 +90,10 @@ const createRequest = (method, url, data, options) => {
       }
       if (cookie.MUSIC_U) header['MUSIC_U'] = cookie.MUSIC_U
       if (cookie.MUSIC_A) header['MUSIC_A'] = cookie.MUSIC_A
-      headers['Cookie'] = Object.keys(header)
+      headers['Cookie'] = Object.entries(header)
         .map(
-          (key) =>
-            encodeURIComponent(key) + '=' + encodeURIComponent(header[key]),
+          (key, value) =>
+            `${encodeURIComponent(key)}=${encodeURIComponent(value)}`,
         )
         .join('; ')
       data.header = header
@@ -111,9 +103,9 @@ const createRequest = (method, url, data, options) => {
 
     const answer = { status: 500, body: {}, cookie: [] }
     const settings = {
-      method: method,
-      url: url,
-      headers: headers,
+      method,
+      url,
+      headers,
       data: queryString.stringify(data),
       httpAgent: new http.Agent({ keepAlive: true }),
       httpsAgent: new https.Agent({ keepAlive: true }),
@@ -129,15 +121,10 @@ const createRequest = (method, url, data, options) => {
         answer.cookie = (res.headers['set-cookie'] || []).map((x) =>
           x.replace(/\s*Domain=[^(;|$)]+;*/, ''),
         )
-        try {
-          answer.body = body
-          answer.status = answer.body.code || res.status
-          if (answer.body.code === 502) {
-            answer.status = 200
-          }
-        } catch (e) {
-          answer.body = body
-          answer.status = res.status
+        answer.body = body
+        answer.status = answer.body.code || res.status
+        if (answer.body.code === 502) {
+          answer.status = 200
         }
 
         answer.status =
