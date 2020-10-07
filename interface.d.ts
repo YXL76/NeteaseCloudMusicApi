@@ -1210,6 +1210,7 @@ export function comment_new(
     pageNo?: number | string
     pageSize?: number | string
     sortType?: number | string
+    cursor?: number | string
   } & RequestBaseConfig,
 ): Promise<Response>
 
