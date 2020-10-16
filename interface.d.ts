@@ -1239,3 +1239,11 @@ export function user_replacephone(
 ): Promise<Response>
 
 export function user_safe(params: RequestBaseConfig): Promise<Response>
+
+export function dj_subscriber(
+  params: {
+    id: number | string
+    limit?: number | string
+    time?: number | string
+  } & RequestBaseConfig,
+): Promise<Response>
