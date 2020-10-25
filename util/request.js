@@ -3,11 +3,11 @@ const axios = require('axios')
 const queryString = require('querystring')
 const http = require('http')
 const https = require('https')
-
+const tunnel = require('tunnel')
+const qs = require('url')
 // request.debug = true // 开启可看到更详细信息
 
 const chooseUserAgent = (ua = false) => {
-  // UA 列表要经常更新啊
   const userAgentList = {
     mobile: [
       // iOS 13.5.1 14.0 beta with safari
