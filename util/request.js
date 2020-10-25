@@ -3,9 +3,6 @@ const axios = require('axios')
 const queryString = require('querystring')
 const http = require('http')
 const https = require('https')
-const tunnel = require('tunnel')
-const qs = require('url')
-// request.debug = true // 开启可看到更详细信息
 
 const chooseUserAgent = (ua = false) => {
   const userAgentList = {
@@ -112,8 +109,6 @@ const createRequest = (method, url, data, options) => {
     }
 
     if (options.crypto === 'eapi') settings.encoding = null
-
-    settings.proxy = options.proxy
 
     axios(settings)
       .then((res) => {

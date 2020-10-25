@@ -12,7 +12,6 @@ module.exports = (query, request) => {
     {
       crypto: 'weapi',
       cookie: query.cookie,
-      proxy: query.proxy,
       realIP: query.realIP,
     },
   ).then((response) => {

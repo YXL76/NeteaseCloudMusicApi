@@ -8,7 +8,6 @@ module.exports = (query, request) => {
   return request('POST', `https://music.163.com/weapi/act/hot`, data, {
     crypto: 'weapi',
     cookie: query.cookie,
-    proxy: query.proxy,
     realIP: query.realIP,
   })
 }

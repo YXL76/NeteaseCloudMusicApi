@@ -8,7 +8,6 @@ module.exports = (query, request) => {
     crypto: 'weapi',
     ua: 'mobile',
     cookie: query.cookie,
-    proxy: query.proxy,
     realIP: query.realIP,
   })
 }

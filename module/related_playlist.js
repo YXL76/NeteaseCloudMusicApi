@@ -8,7 +8,6 @@ module.exports = (query, request) => {
     {
       ua: 'pc',
       cookie: query.cookie,
-      proxy: query.proxy,
       realIP: query.realIP,
     },
   ).then((response) => {

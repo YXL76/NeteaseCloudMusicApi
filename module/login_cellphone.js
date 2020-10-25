@@ -20,7 +20,6 @@ module.exports = async (query, request) => {
       crypto: 'weapi',
       ua: 'pc',
       cookie: query.cookie,
-      proxy: query.proxy,
       realIP: query.realIP,
     },
   )

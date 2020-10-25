@@ -11,7 +11,6 @@ module.exports = (query, request) => {
     {
       crypto: 'eapi',
       cookie: query.cookie,
-      proxy: query.proxy,
       url: '/api/homepage/dragon/ball/static',
       realIP: query.realIP,
     },

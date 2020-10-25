@@ -8,7 +8,6 @@ module.exports = (query, request) => {
     {
       crypto: 'eapi',
       cookie: query.cookie,
-      proxy: query.proxy,
       url: '/api/lbs/countries/v1',
       realIP: query.realIP,
     },

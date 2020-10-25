@@ -12,7 +12,6 @@ module.exports = (query, request) => {
     {
       crypto: 'eapi',
       cookie: query.cookie,
-      proxy: query.proxy,
       url: '/api/playlist/update/name',
       realIP: query.realIP,
     },

@@ -14,7 +14,6 @@ module.exports = (query, request) => {
   return request('POST', `https://interface.music.163.com/api/mv/all`, data, {
     crypto: 'weapi',
     cookie: query.cookie,
-    proxy: query.proxy,
     realIP: query.realIP,
   })
 }

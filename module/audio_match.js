@@ -13,7 +13,6 @@ module.exports = (query, request) => {
   return request('POST', `https://music.163.com/api/music/audio/match`, data, {
     crypto: 'weapi',
     cookie: query.cookie,
-    proxy: query.proxy,
     realIP: query.realIP,
   })
 }
