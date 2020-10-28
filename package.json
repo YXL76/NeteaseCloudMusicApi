@@ -1,6 +1,6 @@
 {
   "name": "NeteaseCloudMusicApi",
-  "version": "3.45.1",
+  "version": "3.45.2",
   "description": "网易云音乐 NodeJS 版 API",
   "scripts": {
     "start": "node app.js",
@@ -47,7 +47,7 @@
     "@types/node": "14.11.10",
     "@typescript-eslint/eslint-plugin": "4.4.1",
     "@typescript-eslint/parser": "4.4.1",
-    "eslint": "7.11.0",
+    "eslint": "7.12.0",
     "eslint-config-prettier": "6.13.0",
     "eslint-plugin-html": "6.0.3",
     "eslint-plugin-prettier": "3.1.4",
