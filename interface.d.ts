@@ -1284,3 +1284,50 @@ export function yunbei_task_finish(
     depositCode?: number | string
   } & RequestBaseConfig,
 ): Promise<Response>
+
+export function msg_recentcontact(params: RequestBaseConfig): Promise<Response>
+
+export function hug_comment(
+  params: {
+    uid: number | string
+    cid: number | string
+    sid: number | string
+  } & RequestBaseConfig,
+): Promise<Response>
+
+export function comment_hug_list(
+  params: {
+    page: number | string
+    cursor: number | string
+    idCursor: number | string
+    pageSize?: number | string
+  } & RequestBaseConfig,
+): Promise<Response>
+
+export function topic_sublist(
+  params: {
+    limit?: number | string
+    offset?: number | string
+  } & RequestBaseConfig,
+): Promise<Response>
+
+export function topic_sublist(
+  params: {
+    limit?: number | string
+    offset?: number | string
+  } & RequestBaseConfig,
+): Promise<Response>
+
+export function artist_new_mv(
+  params: {
+    limit?: number | string
+    startTimestamp?: number | string
+  } & RequestBaseConfig,
+): Promise<Response>
+
+export function artist_new_song(
+  params: {
+    limit?: number | string
+    startTimestamp?: number | string
+  } & RequestBaseConfig,
+): Promise<Response>
